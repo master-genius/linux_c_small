@@ -44,11 +44,6 @@ int main(int argc, char* argv[])
         }
     }
 
-    if (argc > 1) {
-        n = atoi(argv[1]);
-        n = ((n>8)?n:8);
-    }
-
     char *qnm = (char*)malloc(sizeof(char)*n*n);
     char *position = (char*)malloc(sizeof(char)*n);
 
