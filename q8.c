@@ -90,9 +90,9 @@ out_qnm(char *qnm)
 {
     for(int k=0; k<QN; k++) {
         for (int i=0; i<QN; i++) {
-            printf("[%s]",(qnm[k*QN+i]=='Q')?"Q":" ");
+            printf("|%s",(qnm[k*QN+i]=='Q')?"Q":" ");
         }
-        printf("\n");
+        printf("|\n");
     }
     printf("\n");
 }

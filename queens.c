@@ -3,7 +3,7 @@
 #include	<stdlib.h>
 
 #define Q_MIN	6
-#define Q_MAX	19
+#define Q_MAX	32
 #define Q_DEFT	8
 
 int ques(int n);
@@ -210,10 +210,10 @@ void success(int**qe, int n)
 	{
 		for(int j=0;j<n;j++)
 			if(qe[i][j]==-1)
-				printf("[Q]");
+				printf("|Q");
 			else
-				printf("[ ]");
-		printf("\n");
+				printf("| ");
+		printf("|\n");
 	}
 }
 
