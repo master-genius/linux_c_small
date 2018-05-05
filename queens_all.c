@@ -101,8 +101,11 @@ int main(int argc, char* argv[])
         goto end_result;
     }
     printf("others:%d counts\n",_total_count);
-    
-    if (args[1]==1) goto end_result;
+    printf("total counts: %d\n", _total_count+1);
+    printf("with mirror counts: %d\n",(_total_count+1)*2);
+    if (args[1]==1) {
+        goto end_result;
+    }
 
     struct result_list *r;
     for(r=pos_head.next;r!=NULL;r=r->next) {
