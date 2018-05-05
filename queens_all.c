@@ -164,7 +164,7 @@ run_result(char *qnm, int n, char *pos, int pos_k, struct result_list *rlist)
 {
     int k = pos_k;
     int i=0;
-    int old_k, old_posi;
+    int old_posi;
     int ret_size = sizeof(struct result_list);
     _total_count = 0;
     struct result_list *result = NULL;
