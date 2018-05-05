@@ -44,7 +44,8 @@ int main(int argc, char* argv[])
         }
     }
 
-    char *qnm = (char*)malloc(sizeof(char)*n*n);
+    int qns = n*n;
+    char *qnm = (char*)malloc(sizeof(char)*qns);
     char *position = (char*)malloc(sizeof(char)*n);
 
     int k=0,x=0;
@@ -54,7 +55,10 @@ int main(int argc, char* argv[])
     pos_head.pos = (char*)malloc(sizeof(char)*n);
     
     int qend = ((n&1)?(n/2+1):(n/2));
-    int qns = n*n;
+
+    for (int i=0;i<qns;i++) {
+        qnm[i] = 0;
+    }
 
     while(k<n) {
         position[k] = find_able(qnm, n, x, k, NULL);
