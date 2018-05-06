@@ -9,11 +9,13 @@
 
 #define     ARGS_END        4
 
+#define     MAX_MATRIX      64
+
 static int _total_count = 0;
 static int _max_result  = 0;
 
 struct result_list {
-    char *pos;
+    char pos[MAX_MATRIX];
     struct result_list *next;
 };
 
@@ -39,14 +41,15 @@ help(){
         "支持参数：--all, --count, --max=[MAX_LIMIT], --position, [NUMBER]",
         "  --all：此参数会在一个初始解的基础之上找出所有解。",
         "  --count：只输出结果计数，并不输出结果，要和--all配置使用。",
-        "  --max=[MAX_LIMIT]：最大计算结果，此参数用于限制结果数量，",
-        "    对于特别大的解集，可以只显示部分结果而不是一直计算下去。",
+        "  --max=[MAX_LIMIT]：最大计算结果，此参数用于限制结果数量，对于",
+        "    特别大的解集，可以只显示部分结果而不是一直计算下去。",
         "  --position：输出位置信息。",
-        "  [NUMBER]：直接跟一个数字表示计算NxN的棋盘，比如，qnsa2 16。",
+        "  [NUMBER]：直接跟一个数字表示计算NxN的棋盘，比如，qnsa2 16",
         "示例：",
         "  qnsa2 --all --count 15",
         "  qnsa2 --all 13",
         "  qnsa2 --all --max=20 18",
+        "此版本为优化版本，最大支持64x64的棋盘",
         "\0"
     };
     int i=0;
@@ -86,7 +89,7 @@ int main(int argc, char* argv[])
         }
         else {
             n = atoi(argv[i]);
-            n = ((n>8)?n:8);
+            n = ((n>5 && n<=64)?n:8);
         }
     }
 
@@ -103,7 +106,6 @@ int main(int argc, char* argv[])
     
     struct result_list pos_head;
     pos_head.next = NULL;
-    pos_head.pos = (char*)malloc(sizeof(char)*n);
     
     int qend = ((n&1)?(n/2+1):(n/2));
 
@@ -164,7 +166,6 @@ int main(int argc, char* argv[])
 
     free_retlist(pos_head.next);
 end_result:;
-    free(pos_head.pos);
     free(position);
     free(qnm);
     qnm = position = NULL;
@@ -241,12 +242,6 @@ run_result(char *qnm, int n, char *pos, int pos_k, struct result_list *rlist)
                 perror("malloc");
                 return -1;
             }
-            result->pos = (char*)malloc(sizeof(char)*n);
-            if (result==NULL) {
-                perror("malloc");
-                free(result);
-                return -1;
-            }
 
             _total_count += 1;
             result->next = NULL;
@@ -271,7 +266,6 @@ free_retlist(struct result_list *rlist)
     struct result_list *q=rlist;
     while (p!=NULL) {
         q = q->next;
-        free(p->pos);
         free(p);
         p = q;
     }
@@ -297,8 +291,7 @@ out_result(char *qnm, int n, char *pos, int flag)
         }
         if (flag==1) {
             printf("|%d\n",pos[k]);
-        }
-        else{
+        } else {
             printf("|\n");
         }
     }
