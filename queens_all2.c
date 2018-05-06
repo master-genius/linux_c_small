@@ -129,7 +129,7 @@ int main(int argc, char* argv[])
 
     printf("original result:\n");
     out_result(qnm, n, pos_head.pos);
-    if (args[0]==0) {
+    if (args[ARGS_ALL]==0) {
         goto end_result;
     }
 
