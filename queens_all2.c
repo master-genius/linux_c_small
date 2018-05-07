@@ -42,11 +42,11 @@ help(){
         "  --max=[MAX_LIMIT]：最大计算结果，此参数用于限制结果数量，",
         "    对于特别大的解集，可以只显示部分结果而不是一直计算下去。",
         "  --position：输出位置信息。",
-        "  [NUMBER]：直接跟一个数字表示计算NxN的棋盘，比如，qnsa2 16。",
+        "  [NUMBER]：直接跟一个数字表示计算NxN的棋盘，比如，nqueen 16。",
         "示例：",
-        "  qnsa2 --all --count 15",
-        "  qnsa2 --all 13",
-        "  qnsa2 --all --max=20 18",
+        "  nqueen --all --count 15",
+        "  nqueen --all 13",
+        "  nqueen --all --max=20 18",
         "\0"
     };
     int i=0;
