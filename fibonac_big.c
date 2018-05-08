@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 
-char *bigint 
+char * 
 bigadd(char *a, char*b)
 {
     int alen = strlen(a);
