@@ -2,11 +2,13 @@
 #include <stdlib.h>
 #include <math.h>
 
+void ret_test() {
+    printf("return test\n");
+    return ;
+}
+
 int main() {
-    double d = 0;
-    d = pow(1.2, 3);
-    
-    printf("%g\n",d);
+    ret_test();
     
     return 0;
 }
