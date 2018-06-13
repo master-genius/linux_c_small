@@ -99,29 +99,28 @@ int main(int argc, char *argv[])
     srand(time(NULL));
     for(int i=0;i<N;i++) {
         nms[i] = rand();
+        srand(nms[i]);
     }
     struct timeval  start_time,end_time;
-    if (ARGS[ARGS_TIME])
-        gettimeofday(&start_time,0);
+    gettimeofday(&start_time,0);
 
     if (ARGS[ARGS_SORT] == SORT_QUICK) {
         qsorti(nms, 0, N-1);
     } else {
         insert_sort(nms, N);
     }
-
-    if (ARGS[ARGS_TIME]) {
-        gettimeofday(&end_time,0);
-        double run_sec = (double)(end_time.tv_sec - start_time.tv_sec);
-        double run_usec = ((double)(end_time.tv_usec - start_time.tv_usec)/1000000);
-        printf("--run time : %g s\n", run_sec+run_usec);
-    }
+    gettimeofday(&end_time,0);
+    double run_sec = (double)(end_time.tv_sec - start_time.tv_sec);
+    double run_usec = ((double)(end_time.tv_usec - start_time.tv_usec)/1000000);
 
     if (ARGS[ARGS_OUT]) {
         for (int i=0;i<N;i++) {
             printf("%d ", nms[i]);
         }
         printf("\n");
+    }
+    if (ARGS[ARGS_TIME]) {
+        printf("--run time : %g s\n", run_sec+run_usec);
     }
 
     free(nms);
