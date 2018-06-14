@@ -9,36 +9,46 @@
 
 //void qsort(void *d, unsigned int size, int (*call)(void * a, void *b));
 
-void qsorti(int *d, int start, int end) {
+void qsort(void *d, int start, int end, int size, int(*cmp)(void *a, void *b)) {
     if (start >= end) {
         return ;
     }
 
     int med = (end+start)/2;
+    void * center = d+med;
     int i = start;
     int j = end;
-    int tmp = 0;
+    char tmp ;
+    char * buf = NULL;
+    char * buf2 = NULL;
 
-    tmp = d[med];
-    d[med] = d[start];
-    d[start] = tmp;
-
-    for(j=start+1;j<=end;j++) {
-        if (d[j]<d[start]) {
-            i++;
-            if (i==j)continue;
-            tmp = d[i];
-            d[i] = d[j];
-            d[j] = tmp;
+    while(1) {
+        if (cmp(d+i,d+j)==0 && cmp(d[i],center)==0)break;
+        while(cmp(d[i],center)<0 && i<j )i++;
+        while(cmp(d[j],center)>0 && j>i)j--;
+        if (i<j) {
+            buf = (char*)(d+i);
+            buf2 = (char*)(d+j);
+            for (int k=0;k<size;k++) {
+                tmp = *(buf+k);
+                *(buf+k) = *(buf2+k);
+                *(buf2+k) = tmp;
+            }
+        }
+        else
+            break;
+    }
+    if (i<med && i!=j) {
+        buf = (char*)(d+i);
+        buf2 = (char*)(d+j);
+        for (int k=0;k<size;k++) {
+            tmp = *(buf+k);
+            *(buf+k) = *(buf2+k);
+            *(buf2+k) = tmp;
         }
     }
-
-    tmp = d[i];
-    d[i] = d[start];
-    d[start] = tmp;
-
-    qsorti(d, start, i-1);
-    qsorti(d, i+1,end);
+    qsorti(d, start, i-1, cmp);
+    qsorti(d, i+1,end, cmp);
 }
 
 void insert_sort(int *d, int n) {

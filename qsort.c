@@ -11,28 +11,28 @@ void qsorti(int *d, int start, int end) {
     }
 
     int med = (end+start)/2;
-    int center = d[med];
     int i = start;
     int j = end;
     int tmp = 0;
 
-    while(1) {
-        if (d[i]==d[j] && d[i]==center)break;
-        while(d[i]<center && i<j )i++;
-        while(d[j]>center && j>i)j--;
-        if (i<j) {
+    tmp = d[med];
+    d[med] = d[start];
+    d[start] = tmp;
+
+    for(j=start+1;j<=end;j++) {
+        if (d[j]<d[start]) {
+            i++;
+            if (i==j)continue;
             tmp = d[i];
             d[i] = d[j];
             d[j] = tmp;
         }
-        else
-            break;
     }
-    if (i<med && i!=j) {
-        tmp = d[i];
-        d[i] = d[med];
-        d[med] = tmp;
-    }
+
+    tmp = d[i];
+    d[i] = d[start];
+    d[start] = tmp;
+
     qsorti(d, start, i-1);
     qsorti(d, i+1,end);
 }
