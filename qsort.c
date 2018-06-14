@@ -5,6 +5,8 @@
 
 //void qsort(void *d, unsigned int size, int (*call)(void * a, void *b));
 
+#define SWAP(a,b)   tmp=a;a=b;b=tmp;
+
 void qsorti(int *d, int start, int end) {
     if (start >= end) {
         return ;
@@ -14,24 +16,31 @@ void qsorti(int *d, int start, int end) {
     int i = start;
     int j = end;
     int tmp = 0;
-
+    
+    SWAP(d[med],d[start]);
+        /*
     tmp = d[med];
     d[med] = d[start];
-    d[start] = tmp;
+    d[start] = tmp;*/
 
     for(j=start+1;j<=end;j++) {
         if (d[j]<d[start]) {
             i++;
             if (i==j)continue;
+            /*
             tmp = d[i];
             d[i] = d[j];
-            d[j] = tmp;
+            d[j] = tmp;*/
+            SWAP(d[i],d[j]);
         }
     }
 
+    SWAP(d[i],d[start]);
+    /*
     tmp = d[i];
     d[i] = d[start];
     d[start] = tmp;
+    */
 
     qsorti(d, start, i-1);
     qsorti(d, i+1,end);
