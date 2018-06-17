@@ -42,31 +42,28 @@ free_retlist(struct result_list *rlist);
 void
 help(){
     char *help_info[] = {
-        "解决经典的八皇后问题，默认输出8x8棋盘的一个解",
-        "支持参数：--all, --count, --max=[MAX_LIMIT], --position, --mirror, [NUMBER]",
-        "  --all：此参数会在一个初始解的基础之上找出所有解。",
-        "  --count：只输出结果计数，并不输出结果，要和--all配置使用。",
+        "解决经典的八皇后问题，默认输出8x8棋盘的一个解\n",
+        "支持参数：--all, --count, --max=[MAX_LIMIT], --position, --mirror, [NUMBER]\n",
+        "  --all：此参数会在一个初始解的基础之上找出所有解。\n",
+        "  --count：只输出结果计数，并不输出结果，要和--all配置使用。\n",
         "  --max=[MAX_LIMIT]：最大计算结果，此参数用于限制结果数量，",
-        "    对于特别大的解集，可以只显示部分结果而不是一直计算下去。",
-        "  --position：输出位置信息。",
-        "  --mirror：输出镜像结果。",
-        "  --just-mirror：只输出镜像结果。",
-        "  [NUMBER]：直接跟一个数字表示计算NxN的棋盘，比如，nqueen 16。",
-        "示例：",
-        "  nqueen --all --count 15",
-        "  nqueen --all 13",
-        "  nqueen --all --max=20 18",
-        "!NOTICE：",
-        "  多个结果通过翻转，旋转棋盘可以变换得到，所以考虑变换问题，实际的解集要少很多",
+        "    对于特别大的解集，可以只显示部分结果而不是一直计算下去。\n",
+        "  --position：输出位置信息。\n",
+        "  --mirror：输出镜像结果。\n",
+        "  --just-mirror：只输出镜像结果。\n",
+        "  [NUMBER]：直接跟一个数字表示计算NxN的棋盘，比如，nqueen 16。\n",
+        "示例：\n",
+        "  nqueen --all --count 15\n",
+        "  nqueen --all 13\n",
+        "  nqueen --all --max=20 18\n",
+        "!NOTICE：\n",
+        "  多个结果通过翻转，旋转棋盘可以变换得到，所以考虑变换问题，实际的解集要少很多\n",
+        "\n",
         "\0"
     };
     int i=0;
-    while (1) {
-        if (strcmp(help_info[i],"\0")==0){
-            break;
-        }
-        printf("%s\n",help_info[i]);
-        i++;
+    while (strcmp(help_info[i],"\0")!=0) {
+        printf("%s",help_info[i++]);
     }
 }
 
