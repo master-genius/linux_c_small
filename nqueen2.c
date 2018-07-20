@@ -21,26 +21,19 @@ struct result_list {
     struct result_list *next;
 };
 
-void
-set_qnm(char *qnm, int n, int start_x, int start_y, int val);
+void set_qnm(char *qnm, int n, int start_x, int start_y, int val);
 
-int
-find_able(char *qnm, int n, int start_x, int start_y, int *ax);
+int find_able(char *qnm, int n, int start_x, int start_y, int *ax);
 
-int
-run_result(char *qnm, int n, char *pos, int pos_k, struct result_list *rlist);
+int run_result(char *qnm, int n, char *pos, int pos_k, struct result_list *rlist);
 
-void
-out_result(char *qnm, int n, char *pos, int flag);
+void out_result(char *qnm, int n, char *pos, int flag);
 
-void
-out_mirror(char *qnm, int n, char *pos, int flag);
+void out_mirror(char *qnm, int n, char *pos, int flag);
 
-void
-free_retlist(struct result_list *rlist);
+void free_retlist(struct result_list *rlist);
 
-void
-help(){
+void help(){
     char *help_info[] = {
         "解决经典的八皇后问题，默认输出8x8棋盘的一个解\n",
         "支持参数：--all, --count, --max=[MAX_LIMIT], --position, --mirror, [NUMBER]\n",
@@ -206,8 +199,7 @@ end_result:;
     return status;
 }
 
-void
-set_qnm(char *qnm, int n, int start_x, int start_y, int val)
+void set_qnm(char *qnm, int n, int start_x, int start_y, int val)
 {
     int i=0,k=0;
     if (val > 0){
@@ -231,8 +223,7 @@ set_qnm(char *qnm, int n, int start_x, int start_y, int val)
 
 }
 
-int
-find_able(char *qnm, int n, int start_x, int start_y, int *ax)
+int find_able(char *qnm, int n, int start_x, int start_y, int *ax)
 {
     for (int i=start_x; i<n; i++) {
         if (qnm[start_y*n+i] == 0) {
@@ -243,8 +234,7 @@ find_able(char *qnm, int n, int start_x, int start_y, int *ax)
     return -1;
 }
 
-int
-run_result(char *qnm, int n, char *pos, int pos_k, struct result_list *rlist)
+int run_result(char *qnm, int n, char *pos, int pos_k, struct result_list *rlist)
 {
     int k = pos_k;
     int i=0;
@@ -298,8 +288,7 @@ run_result(char *qnm, int n, char *pos, int pos_k, struct result_list *rlist)
     return 0; 
 }
 
-void
-free_retlist(struct result_list *rlist)
+void free_retlist(struct result_list *rlist)
 {
     struct result_list *p=rlist;
     struct result_list *q=rlist;
@@ -311,8 +300,7 @@ free_retlist(struct result_list *rlist)
     }
 }
 
-void
-out_result(char *qnm, int n, char *pos, int flag)
+void out_result(char *qnm, int n, char *pos, int flag)
 {
     int i=0,k=0;
     int qns = n*n;
@@ -368,3 +356,4 @@ void out_mirror(char *qnm, int n, char *pos, int flag)
     }
     printf("\n");
 }
+
